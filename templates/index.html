@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Analytics & ML Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="navbar">
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div>
+                <h1>Student Performance Analytics</h1>
+                <p class="subtitle">Data Mining & Decision Tree Machine Learning Dashboard</p>
+            </div>
+        </div>
+        <div class="header-badges">
+            <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> ML Pipeline Active</span>
+            <span class="badge badge-accent"><i class="fa-solid fa-tree"></i> Decision Tree 95% Acc</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Executive Metrics Cards -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon icon-blue"><i class="fa-solid fa-users"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Total Students</span>
+                    <h3 class="metric-value" id="metric-students">1,000</h3>
+                    <span class="metric-sub text-blue">Clean Dataset</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon icon-emerald"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Overall Pass Rate</span>
+                    <h3 class="metric-value" id="metric-passrate">94.90%</h3>
+                    <span class="metric-sub text-emerald"><i class="fa-solid fa-arrow-up"></i> High Success</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon icon-purple"><i class="fa-solid fa-calculator"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Avg Aggregate Score</span>
+                    <h3 class="metric-value" id="metric-avgscore">67.77</h3>
+                    <span class="metric-sub text-purple">Math, Reading, Writing</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon icon-amber"><i class="fa-solid fa-diagram-project"></i></div>
+                <div class="metric-info">
+                    <span class="metric-label">Decision Tree Acc</span>
+                    <h3 class="metric-value" id="metric-accuracy">95.00%</h3>
+                    <span class="metric-sub text-amber">Pass / Fail Prediction</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" data-tab="tab-eda"><i class="fa-solid fa-chart-pie"></i> Exploratory Data Analysis</button>
+            <button class="tab-btn" data-tab="tab-rules"><i class="fa-solid fa-link"></i> Association Rules (Apriori)</button>
+            <button class="tab-btn" data-tab="tab-ml"><i class="fa-solid fa-brain"></i> Decision Tree & ML Models</button>
+            <button class="tab-btn" data-tab="tab-predict"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Predictor Tool</button>
+            <button class="tab-btn" data-tab="tab-data"><i class="fa-solid fa-table"></i> Cleaned Dataset Explorer</button>
+        </nav>
+
+        <!-- Tab 1: EDA Gallery -->
+        <div id="tab-eda" class="tab-content active">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-chart-bar"></i> Exploratory Data Analysis Gallery</h2>
+                <p>Visualizing student score distributions, correlations, and demographic impact.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-card" onclick="openLightbox('/plots/1_score_distributions.png', 'Score Distributions (Math, Reading, Writing)')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/1_score_distributions.png" alt="Score Distributions">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Subject Score Distributions</h4>
+                        <p>Histograms & KDE curves showing distribution for Math, Reading, and Writing.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card" onclick="openLightbox('/plots/2_correlation_heatmap.png', 'Test Score Correlation Heatmap')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/2_correlation_heatmap.png" alt="Correlation Heatmap">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Score Correlation Heatmap</h4>
+                        <p>High correlation (>0.90) between Reading and Writing scores.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card" onclick="openLightbox('/plots/3_demographic_performance.png', 'Demographic Impact Analysis')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/3_demographic_performance.png" alt="Demographic Impact">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Parental Education & Gender Impact</h4>
+                        <p>Students with educated parents consistently score higher across subjects.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card" onclick="openLightbox('/plots/4_test_prep_and_lunch_impact.png', 'Test Prep & Lunch Impact')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/4_test_prep_and_lunch_impact.png" alt="Test Prep & Lunch">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Test Prep & Lunch Type Impact</h4>
+                        <p>Standard lunch and prep completion provide +8 to +12 point score gains.</p>
+                    </div>
+                </div>
+
+                <div class="gallery-card full-width-card" onclick="openLightbox('/plots/5_grade_distribution.png', 'Grade & Performance Level Breakdown')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/5_grade_distribution.png" alt="Grade Distribution">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Performance Level & Grade Breakdown</h4>
+                        <p>Distribution of High/Medium/Low performance levels and letter grades (A+ to F).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Association Rules -->
+        <div id="tab-rules" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-link"></i> Association Rule Mining (Apriori Algorithm)</h2>
+                <p>Discovering hidden patterns and frequent feature combinations predicting student success.</p>
+            </div>
+
+            <div class="rules-container">
+                <div class="rules-plot-wrapper" onclick="openLightbox('/plots/6_association_rules.png', 'Association Rules Scatter Plot')">
+                    <img src="/plots/6_association_rules.png" alt="Association Rules">
+                    <div class="card-caption">
+                        <h4>Support vs Confidence Rule Map</h4>
+                        <p>Click image to expand association rules scatter plot.</p>
+                    </div>
+                </div>
+
+                <div class="rules-table-wrapper">
+                    <h3><i class="fa-solid fa-list-check"></i> Mined Association Rules Table</h3>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Antecedent (If Condition)</th>
+                                <th>Consequent (Then Result)</th>
+                                <th>Support</th>
+                                <th>Confidence</th>
+                                <th>Lift</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="tag tag-blue">Standard Lunch</span> + <span class="tag tag-emerald">Test Prep Completed</span></td>
+                                <td><span class="tag tag-gold">Performance Level: High</span></td>
+                                <td>0.117</td>
+                                <td>51.5%</td>
+                                <td><span class="badge badge-accent">1.591 (High Lift)</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag tag-purple">Some College</span> + <span class="tag tag-gray">No Prep</span></td>
+                                <td><span class="tag tag-blue">Performance Level: Medium</span></td>
+                                <td>0.088</td>
+                                <td>59.1%</td>
+                                <td><span class="badge badge-info">1.218</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag tag-purple">Some College</span></td>
+                                <td><span class="tag tag-blue">Performance Level: Medium</span></td>
+                                <td>0.119</td>
+                                <td>52.7%</td>
+                                <td><span class="badge badge-info">1.086</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag tag-purple">High School Parent</span></td>
+                                <td><span class="tag tag-blue">Performance Level: Medium</span></td>
+                                <td>0.102</td>
+                                <td>52.0%</td>
+                                <td><span class="badge badge-info">1.073</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag tag-pink">Female</span> + <span class="tag tag-blue">Standard Lunch</span> + <span class="tag tag-gray">No Prep</span></td>
+                                <td><span class="tag tag-blue">Performance Level: Medium</span></td>
+                                <td>0.111</td>
+                                <td>51.6%</td>
+                                <td><span class="badge badge-info">1.064</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="tag tag-blue">Male</span> + <span class="tag tag-gray">No Prep</span></td>
+                                <td><span class="tag tag-blue">Performance Level: Medium</span></td>
+                                <td>0.158</td>
+                                <td>51.3%</td>
+                                <td><span class="badge badge-info">1.058</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Machine Learning & Decision Tree -->
+        <div id="tab-ml" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-brain"></i> Machine Learning & Decision Tree Classifier</h2>
+                <p>Tuned Decision Tree architecture, confusion matrix, and feature importances.</p>
+            </div>
+
+            <div class="ml-grid">
+                <div class="ml-card tree-card" onclick="openLightbox('/plots/7_decision_tree_structure.png', 'Decision Tree Architecture Diagram')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/7_decision_tree_structure.png" alt="Decision Tree Structure">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Optimized Decision Tree Structure</h4>
+                        <p>Depth-4 pruned decision tree tuned with Entropy criterion for high interpretability.</p>
+                    </div>
+                </div>
+
+                <div class="ml-card" onclick="openLightbox('/plots/8_confusion_matrix.png', 'Decision Tree Confusion Matrix')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/8_confusion_matrix.png" alt="Confusion Matrix">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Test Set Confusion Matrix</h4>
+                        <p>Evaluates multi-class classification accuracy across High, Medium, and Low levels.</p>
+                    </div>
+                </div>
+
+                <div class="ml-card" onclick="openLightbox('/plots/9_feature_importances.png', 'Gini Feature Importances')">
+                    <div class="card-img-wrapper">
+                        <img src="/plots/9_feature_importances.png" alt="Feature Importances">
+                    </div>
+                    <div class="card-caption">
+                        <h4>Feature Importance Ranking</h4>
+                        <p>Identifies Lunch Type & Test Prep as top decisive factors driving student outcomes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-comparison-box">
+                <h3><i class="fa-solid fa-code-compare"></i> Model Performance Benchmarks</h3>
+                <div class="comparison-cards">
+                    <div class="benchmark-card best-model">
+                        <div class="benchmark-header">
+                            <h4>Decision Tree Classifier (Pass/Fail)</h4>
+                            <span class="badge badge-success">Best Classifier</span>
+                        </div>
+                        <div class="benchmark-score">95.00%</div>
+                        <p>Accuracy Score on 200 Test Samples</p>
+                    </div>
+
+                    <div class="benchmark-card">
+                        <div class="benchmark-header">
+                            <h4>Decision Tree (3-Class Performance)</h4>
+                            <span class="badge badge-info">Tuned Tree</span>
+                        </div>
+                        <div class="benchmark-score">48.00%</div>
+                        <p>Multi-Class F1-Score: 46.56%</p>
+                    </div>
+
+                    <div class="benchmark-card">
+                        <div class="benchmark-header">
+                            <h4>Random Forest Classifier</h4>
+                            <span class="badge badge-gray">Baseline</span>
+                        </div>
+                        <div class="benchmark-score">45.50%</div>
+                        <p>Multi-Class Benchmark Accuracy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Live Prediction Tool -->
+        <div id="tab-predict" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Real-Time Student Performance Predictor</h2>
+                <p>Select student demographics and run instant Machine Learning prediction using the Decision Tree model.</p>
+            </div>
+
+            <div class="predictor-wrapper">
+                <form id="predict-form" class="predictor-form">
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                        <select id="input-gender" class="form-select">
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-people-group"></i> Race / Ethnicity</label>
+                        <select id="input-race" class="form-select">
+                            <option value="group A">Group A</option>
+                            <option value="group B" selected>Group B</option>
+                            <option value="group C">Group C</option>
+                            <option value="group D">Group D</option>
+                            <option value="group E">Group E</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-user-graduate"></i> Parental Education Level</label>
+                        <select id="input-edu" class="form-select">
+                            <option value="some high school">Some High School</option>
+                            <option value="high school">High School</option>
+                            <option value="some college" selected>Some College</option>
+                            <option value="associate's degree">Associate's Degree</option>
+                            <option value="bachelor's degree">Bachelor's Degree</option>
+                            <option value="master's degree">Master's Degree</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-utensils"></i> Lunch Type (Socioeconomic Indicator)</label>
+                        <select id="input-lunch" class="form-select">
+                            <option value="standard" selected>Standard Lunch</option>
+                            <option value="free/reduced">Free / Reduced Lunch</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-book-open-reader"></i> Test Preparation Course</label>
+                        <select id="input-prep" class="form-select">
+                            <option value="completed">Completed</option>
+                            <option value="none" selected>None</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-predict"><i class="fa-solid fa-bolt"></i> Run Decision Tree Prediction</button>
+                </form>
+
+                <div class="predictor-result-box" id="result-box">
+                    <div class="result-placeholder">
+                        <i class="fa-solid fa-robot"></i>
+                        <h3>Ready for Prediction</h3>
+                        <p>Fill out the form and click <strong>Run Prediction</strong> to generate real-time AI results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 5: Data Explorer -->
+        <div id="tab-data" class="tab-content">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-database"></i> Cleaned Dataset Explorer</h2>
+                <p>Interactive table displaying preprocessed student records and engineered features.</p>
+            </div>
+
+            <div class="table-controls">
+                <div class="search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="data-search" placeholder="Search student records (e.g., bachelor, completed, female)...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="styled-table" id="dataset-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Gender</th>
+                            <th>Race/Ethnicity</th>
+                            <th>Parent Education</th>
+                            <th>Lunch</th>
+                            <th>Test Prep</th>
+                            <th>Math</th>
+                            <th>Reading</th>
+                            <th>Writing</th>
+                            <th>Avg Score</th>
+                            <th>Grade</th>
+                            <th>Performance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr><td colspan="12" class="text-center">Loading dataset...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Expanded View">
+            <div id="lightbox-title" class="lightbox-title"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Student Performance Data Mining & ML Project &copy; 2026 | Built with Python, Flask & Decision Trees</p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
