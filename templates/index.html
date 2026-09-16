@@ -17,15 +17,15 @@
     <!-- Top Header -->
     <header class="navbar">
         <div class="logo-container">
-            <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="logo-icon"></div>
             <div>
                 <h1>Student Performance Analytics</h1>
                 <p class="subtitle">Data Mining & Decision Tree Machine Learning Dashboard</p>
             </div>
         </div>
         <div class="header-badges">
-            <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> ML Pipeline Active</span>
-            <span class="badge badge-accent"><i class="fa-solid fa-tree"></i> Decision Tree 95% Acc</span>
+            <span class="badge badge-success">ML Pipeline Active</span>
+            <span class="badge badge-accent">Decision Tree 95% Acc</span>
         </div>
     </header>
 
@@ -35,7 +35,7 @@
         <!-- Executive Metrics Cards -->
         <section class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-icon icon-blue"><i class="fa-solid fa-users"></i></div>
+                <div class="metric-icon icon-blue"></div>
                 <div class="metric-info">
                     <span class="metric-label">Total Students</span>
                     <h3 class="metric-value" id="metric-students">1,000</h3>
@@ -44,16 +44,16 @@
             </div>
 
             <div class="metric-card">
-                <div class="metric-icon icon-emerald"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="metric-icon icon-emerald"></div>
                 <div class="metric-info">
                     <span class="metric-label">Overall Pass Rate</span>
                     <h3 class="metric-value" id="metric-passrate">94.90%</h3>
-                    <span class="metric-sub text-emerald"><i class="fa-solid fa-arrow-up"></i> High Success</span>
+                    <span class="metric-sub text-emerald">High Success</span>
                 </div>
             </div>
 
             <div class="metric-card">
-                <div class="metric-icon icon-purple"><i class="fa-solid fa-calculator"></i></div>
+                <div class="metric-icon icon-purple"></div>
                 <div class="metric-info">
                     <span class="metric-label">Avg Aggregate Score</span>
                     <h3 class="metric-value" id="metric-avgscore">67.77</h3>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="metric-card">
-                <div class="metric-icon icon-amber"><i class="fa-solid fa-diagram-project"></i></div>
+                <div class="metric-icon icon-amber"></div>
                 <div class="metric-info">
                     <span class="metric-label">Decision Tree Acc</span>
                     <h3 class="metric-value" id="metric-accuracy">95.00%</h3>
@@ -73,17 +73,17 @@
 
         <!-- Navigation Tabs -->
         <nav class="tabs-nav">
-            <button class="tab-btn active" data-tab="tab-eda"><i class="fa-solid fa-chart-pie"></i> Exploratory Data Analysis</button>
-            <button class="tab-btn" data-tab="tab-rules"><i class="fa-solid fa-link"></i> Association Rules (Apriori)</button>
-            <button class="tab-btn" data-tab="tab-ml"><i class="fa-solid fa-brain"></i> Decision Tree & ML Models</button>
-            <button class="tab-btn" data-tab="tab-predict"><i class="fa-solid fa-wand-magic-sparkles"></i> Live Predictor Tool</button>
-            <button class="tab-btn" data-tab="tab-data"><i class="fa-solid fa-table"></i> Cleaned Dataset Explorer</button>
+            <button class="tab-btn active" data-tab="tab-eda">Exploratory Data Analysis</button>
+            <button class="tab-btn" data-tab="tab-rules">Association Rules (Apriori)</button>
+            <button class="tab-btn" data-tab="tab-ml">Decision Tree & ML Models</button>
+            <button class="tab-btn" data-tab="tab-predict">Live Predictor Tool</button>
+            <button class="tab-btn" data-tab="tab-data">Cleaned Dataset Explorer</button>
         </nav>
 
         <!-- Tab 1: EDA Gallery -->
         <div id="tab-eda" class="tab-content active">
             <div class="section-header">
-                <h2><i class="fa-solid fa-chart-bar"></i> Exploratory Data Analysis Gallery</h2>
+                <h2>Exploratory Data Analysis Gallery</h2>
                 <p>Visualizing student score distributions, correlations, and demographic impact.</p>
             </div>
 
@@ -143,7 +143,7 @@
         <!-- Tab 2: Association Rules -->
         <div id="tab-rules" class="tab-content">
             <div class="section-header">
-                <h2><i class="fa-solid fa-link"></i> Association Rule Mining (Apriori Algorithm)</h2>
+                <h2>Association Rule Mining (Apriori Algorithm)</h2>
                 <p>Discovering hidden patterns and frequent feature combinations predicting student success.</p>
             </div>
 
@@ -157,7 +157,7 @@
                 </div>
 
                 <div class="rules-table-wrapper">
-                    <h3><i class="fa-solid fa-list-check"></i> Mined Association Rules Table</h3>
+                    <h3>Mined Association Rules Table</h3>
                     <table class="styled-table">
                         <thead>
                             <tr>
@@ -220,7 +220,7 @@
         <!-- Tab 3: Machine Learning & Decision Tree -->
         <div id="tab-ml" class="tab-content">
             <div class="section-header">
-                <h2><i class="fa-solid fa-brain"></i> Machine Learning & Decision Tree Classifier</h2>
+                <h2>Machine Learning & Decision Tree Classifier</h2>
                 <p>Tuned Decision Tree architecture, confusion matrix, and feature importances.</p>
             </div>
 
@@ -257,7 +257,7 @@
             </div>
 
             <div class="model-comparison-box">
-                <h3><i class="fa-solid fa-code-compare"></i> Model Performance Benchmarks</h3>
+                <h3>Model Performance Benchmarks</h3>
                 <div class="comparison-cards">
                     <div class="benchmark-card best-model">
                         <div class="benchmark-header">
@@ -292,14 +292,14 @@
         <!-- Tab 4: Live Prediction Tool -->
         <div id="tab-predict" class="tab-content">
             <div class="section-header">
-                <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Real-Time Student Performance Predictor</h2>
+                <h2>Real-Time Student Performance Predictor</h2>
                 <p>Select student demographics and run instant Machine Learning prediction using the Decision Tree model.</p>
             </div>
 
             <div class="predictor-wrapper">
                 <form id="predict-form" class="predictor-form">
                     <div class="form-group">
-                        <label><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                        <label>Gender</label>
                         <select id="input-gender" class="form-select">
                             <option value="female">Female</option>
                             <option value="male">Male</option>
@@ -307,7 +307,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-people-group"></i> Race / Ethnicity</label>
+                        <label>Race / Ethnicity</label>
                         <select id="input-race" class="form-select">
                             <option value="group A">Group A</option>
                             <option value="group B" selected>Group B</option>
@@ -318,7 +318,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-user-graduate"></i> Parental Education Level</label>
+                        <label>Parental Education Level</label>
                         <select id="input-edu" class="form-select">
                             <option value="some high school">Some High School</option>
                             <option value="high school">High School</option>
@@ -330,7 +330,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-utensils"></i> Lunch Type (Socioeconomic Indicator)</label>
+                        <label>Lunch Type (Socioeconomic Indicator)</label>
                         <select id="input-lunch" class="form-select">
                             <option value="standard" selected>Standard Lunch</option>
                             <option value="free/reduced">Free / Reduced Lunch</option>
@@ -338,19 +338,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-book-open-reader"></i> Test Preparation Course</label>
+                        <label>Test Preparation Course</label>
                         <select id="input-prep" class="form-select">
                             <option value="completed">Completed</option>
                             <option value="none" selected>None</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-predict"><i class="fa-solid fa-bolt"></i> Run Decision Tree Prediction</button>
+                    <button type="submit" class="btn-predict">Run Decision Tree Prediction</button>
                 </form>
 
                 <div class="predictor-result-box" id="result-box">
                     <div class="result-placeholder">
-                        <i class="fa-solid fa-robot"></i>
                         <h3>Ready for Prediction</h3>
                         <p>Fill out the form and click <strong>Run Prediction</strong> to generate real-time AI results.</p>
                     </div>
@@ -361,13 +360,12 @@
         <!-- Tab 5: Data Explorer -->
         <div id="tab-data" class="tab-content">
             <div class="section-header">
-                <h2><i class="fa-solid fa-database"></i> Cleaned Dataset Explorer</h2>
+                <h2>Cleaned Dataset Explorer</h2>
                 <p>Interactive table displaying preprocessed student records and engineered features.</p>
             </div>
 
             <div class="table-controls">
                 <div class="search-wrapper">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" id="data-search" placeholder="Search student records (e.g., bachelor, completed, female)...">
                 </div>
             </div>
